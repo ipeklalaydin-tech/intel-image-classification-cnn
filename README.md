@@ -12,7 +12,7 @@ Bu çalışmaya başlarken birkaç farklı deneme yaptım ve süreç boyunca hem
 - **İlk Deneme:** Validation split kullanmadığım için model aşırı öğrenme (overfitting) yaptı. Accuracy yaklaşık **%63** civarındaydı ve gerçek performansı yansıtmıyordu.  
 - **İkinci Deneme:** Validation split ekledim ve mimariyi biraz derinleştirdim. Accuracy **%86**’ya kadar çıktı ama 50 epoch’luk eğitimin sadece 15 epoch’u bile **1.5 saat** sürdü — yani çok yavaştı.  
 - **Son Model (Bu Repo):** Daha optimize bir yaklaşım izledim. Mixed precision ve `tf.data` optimizasyonları ekledim. EarlyStopping sayesinde eğitim 15. epoch civarında durdu ve:  
-  - **Eğitim süresi:** ~2 dakika  
+  - **Eğitim süresi:** ~25 dakika  
   - **Validation accuracy:** ~%80  
   - **Test accuracy:** ~%76  
 
@@ -23,14 +23,14 @@ Bu haliyle model hem daha hızlı hem de daha genellenebilir oldu.
 ## Model & Eğitim Ayarları
 - **Model Mimarisinde:**  
   5 adet Conv2D + MaxPooling2D bloğu → Flatten → Dense (512 → 128) → Dropout (0.2)  
-  Her konvolüsyon katmanında L2 regularizasyon (wd=1e-4) eklendi.  
+  Her konvolüsyon katmanında L2 regularizasyonu eklendi.  
 - **Optimizer:** Adamax (lr=5e-4)  
 - **Loss:** Sparse Categorical Crossentropy  
 - **Callbacks:**  
   - `EarlyStopping` (val_accuracy, patience=4)  
   - `ReduceLROnPlateau` (val_loss, factor=0.3)  
-- **Validation Split:** %15 → Overfit kontrolü sağladı  
-- **Batch Size:** 64 → GPU belleği ve hız dengesi  
+- **Validation Split:** %15 - Overfit kontrolü sağladı  
+- **Batch Size:** 64 - GPU belleği ve hız dengesi  
 - **Ekstra:** Mixed Precision ile eğitim süresi önemli ölçüde hızlandı  
 
 ---
@@ -38,20 +38,15 @@ Bu haliyle model hem daha hızlı hem de daha genellenebilir oldu.
 ## Sonuçlar
 - **Validation Accuracy:** ~80%  
 - **Test Accuracy:** ~76%  
-- **Toplam Eğitim Süresi:** ~20 dakika  
-
----
-
-## Örnek Tahminler
-Aşağıdaki görselde test setinden rastgele seçilen 25 örnek ve modelin tahmin ettiği sınıflar yer alıyor:
+- **Toplam Eğitim Süresi:** ~25 dakika  
 
 ---
 
 ## Süreçte Öğrendiklerim
-- Validation split kullanmamak → **overfit ve düşük genelleme**  
-- L2 regularizasyon + Dropout eklemek → **overfit azaldı, model daha dengeli hale geldi**  
-- Mixed precision + prefetching → **eğitim süresi %70 kısaldı**  
-- IMG_SIZE’ı 192x192’a düşürmek → **GPU bellek taşmalarını (OOM) önledi**  
+- Validation split kullanmamak - overfit ve düşük genelleme  
+- L2 regularizasyon + Dropout eklemek -overfit azaldı
+- Mixed precision + prefetching - eğitim süresi %70 kısaldı
+- IMG_SIZE’ı 192x192’a düşürmek - GPU bellek taşmalarını önledi 
 
 ---
 
@@ -59,7 +54,6 @@ Aşağıdaki görselde test setinden rastgele seçilen 25 örnek ve modelin tahm
 - Farklı optimizer’lar (SGD + momentum, AdamW) denemek  
 - Transfer learning (EfficientNetB0, ResNet50 gibi) ile doğruluğu artırmak  
 - Veri artırma (augmentation) stratejilerini daha da geliştirmek  
-- Modeli TensorFlow Lite’a dönüştürüp mobil cihazlarda test etmek  
 
 ## Kaggledan görmek için:
 https://www.kaggle.com/code/lalayd/son-proje
