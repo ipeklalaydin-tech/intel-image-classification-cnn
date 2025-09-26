@@ -12,7 +12,7 @@ Bu çalışmaya başlarken birkaç farklı deneme yaptım ve süreç boyunca hem
 - **İlk Deneme:** Validation split kullanmadığım için model aşırı öğrenme (overfitting) yaptı. Accuracy yaklaşık **%63** civarındaydı ve gerçek performansı yansıtmıyordu.  
 - **İkinci Deneme:** Validation split ekledim ve mimariyi biraz derinleştirdim. Accuracy **%86**’ya kadar çıktı ama 50 epoch’luk eğitimin sadece 15 epoch’u bile **1.5 saat** sürdü — yani çok yavaştı.  
 - **Son Model (Bu Repo):** Daha optimize bir yaklaşım izledim. Mixed precision ve `tf.data` optimizasyonları ekledim. EarlyStopping sayesinde eğitim 15. epoch civarında durdu ve:  
-  - **Eğitim süresi:** ~25 dakika  
+  - **Eğitim süresi:** ~30 dakika  
   - **Validation accuracy:** ~%80  
   - **Test accuracy:** ~%76  
 
@@ -49,7 +49,7 @@ Aşağıdaki tablo, farklı hiperparametre kombinasyonlarıyla yapılan denemele
 ## Sonuçlar
 - **Validation Accuracy:** ~80%  
 - **Test Accuracy:** ~76%  
-- **Toplam Eğitim Süresi:** ~25 dakika  
+- **Toplam Eğitim Süresi:** ~30 dakika  
 
 ---
 
