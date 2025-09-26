@@ -31,7 +31,18 @@ Bu haliyle model hem daha hızlı hem de daha genellenebilir oldu.
   - `ReduceLROnPlateau` (val_loss, factor=0.3)  
 - **Validation Split:** %15 - Overfit kontrolü sağladı  
 - **Batch Size:** 64 - GPU belleği ve hız dengesi  
-- **Ekstra:** Mixed Precision ile eğitim süresi önemli ölçüde hızlandı  
+- **Ekstra:** Mixed Precision ile eğitim süresi önemli ölçüde hızlandı
+- 
+## 🔧 Hiperparametre Denemeleri
+
+Aşağıdaki tablo, farklı hiperparametre kombinasyonlarıyla yapılan denemeleri ve sonuçlarını özetler:
+
+| Deneme | Learning Rate | Batch Size | Epoch | Dropout | Optimizer | Val Accuracy | Notlar |
+|-------|---------------|-----------|-------|---------|-----------|-------------|--------|
+| 1 | 0.001 | 32 | 20 | 0.3 | Adam | 0.78 | Overfit gözlendi, val. loss arttı |
+| 2 | 0.0005 | 64 | 25 | 0.4 | Adam | 0.81 | Daha dengeli sonuçlar, loss daha stabil |
+| 3 | 0.0001 | 64 | 30 | 0.4 | Adam | 0.80 | Eğitim yavaşladı, iyileşme sınırlı |
+| 4 | ... | ... | ... | ... | ... | ... | ... |
 
 ---
 
