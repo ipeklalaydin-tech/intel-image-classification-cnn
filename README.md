@@ -40,16 +40,10 @@ Bu haliyle model hem daha hızlı hem de daha genellenebilir oldu.
 - **Test Accuracy:** ~76%  
 - **Toplam Eğitim Süresi:** ~20 dakika  
 
-![Accuracy Curve](results/accuracy.png)  
-![Loss Curve](results/loss.png)  
-![Confusion Matrix](results/confusion_matrix.png)
-
 ---
 
 ## Örnek Tahminler
 Aşağıdaki görselde test setinden rastgele seçilen 25 örnek ve modelin tahmin ettiği sınıflar yer alıyor:
-
-![Predictions](results/predictions_grid.png)
 
 ---
 
