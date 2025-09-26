@@ -33,7 +33,7 @@ Bu haliyle model hem daha hızlı hem de daha genellenebilir oldu.
 - **Batch Size:** 64 - GPU belleği ve hız dengesi  
 - **Ekstra:** Mixed Precision ile eğitim süresi önemli ölçüde hızlandı
 - 
-## 🔧 Hiperparametre Denemeleri
+## Hiperparametre Denemeleri
 
 Aşağıdaki tablo, farklı hiperparametre kombinasyonlarıyla yapılan denemeleri ve sonuçlarını özetler:
 
